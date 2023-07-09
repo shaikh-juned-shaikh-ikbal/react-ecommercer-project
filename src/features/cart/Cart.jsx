@@ -35,8 +35,10 @@ export default function Example() {
 
   return (
     <div>
-      <div className="mx-auto bg-white max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto mt-12  bg-white max-w-7xl px-4 sm:px-6 lg:px-8">
+       
         <div className="border-t  border-gray-200 px-4 py-6 sm:px-6">
+        <h1 className="text-4xl my-6 font-bold tracking-tight text-gray-900">Cart</h1>
           <div className="flow-root">
             <ul role="list" className="-my-6 divide-y divide-gray-200">
               {products.map((product) => (
@@ -62,7 +64,16 @@ export default function Example() {
                       </p>
                     </div>
                     <div className="flex flex-1 items-end justify-between text-sm">
-                      <p className="text-gray-500">Qty {product.quantity}</p>
+                      <div className="text-gray-500">
+                        <label htmlFor="quantity" className="inline mr-5 text-sm font-medium leading-6 text-gray-900">
+                          Qty
+                        </label>
+                       <select>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                       </select>
+                      </div>
 
                       <div className="flex">
                         <button
