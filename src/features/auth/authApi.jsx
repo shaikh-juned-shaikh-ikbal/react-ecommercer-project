@@ -1,7 +1,7 @@
 
 export function createUser(userData) {
   return new Promise(async(resolve) =>{
-  const response =  response.json("http://localhost:8080/users" , {
+  const response = await  fetch ("http://localhost:8080/users" , {
     method:"POST",
     body:JSON.stringify(userData),
     headers:{ 'content-type':'aplication/json'}
@@ -11,4 +11,3 @@ export function createUser(userData) {
   }
   );
 }
- 

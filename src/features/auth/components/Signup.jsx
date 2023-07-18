@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
-import { increment, incrementAsync } from "../authSlice";
+import { selectLoggedInUser , createUserAsync } from "../authSlice";
 import { Link } from "react-router-dom";
 
 export default function Signup() {
@@ -13,10 +13,14 @@ export default function Signup() {
     formState: { errors },
   } = useForm();
 
+  const user = useSelector(selectLoggedInUser)
+  console.log(user);
+
   console.log(errors);
 
   return (
     <div>
+      {user?.email}
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
@@ -34,6 +38,7 @@ export default function Signup() {
             noValidate
             className="space-y-6"
             onSubmit={handleSubmit((data) => {
+              dispatch(createUserAsync({email:data.email, password:data.password}))
               console.log(data);
             })}
           >
@@ -78,7 +83,7 @@ export default function Signup() {
                   {...register("password", {
                     required: "password is required",
                     pattern:{
-                      value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm , message : ` at least 8 characters\n
+                      value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm , message : `- at least 8 characters\n
                        must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number\n
                        Can contain special characters`
                     }
