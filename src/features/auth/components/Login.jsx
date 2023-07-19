@@ -3,21 +3,28 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   increment,
   incrementAsync,
+  selectError,
+  selectLoggedInUser
 } from '../authSlice';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
+import  checkUserAsync from '../authSlice';
+import { useForm } from 'react-hook-form';
 
 export default function Login() {
   const dispatch = useDispatch();
+  const error = useSelector(selectError)
+  const user = useSelector(selectLoggedInUser)
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  console.log(error);
+  console.log(errors);
 
   return (
     <div>
+      {user && <Navigate replace={true} t0='/' />}
        <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
@@ -34,6 +41,7 @@ export default function Login() {
           <form noValidate 
            onSubmit={handleSubmit((data) => {
             dispatch()
+            checkUserAsync({ email: data.email, password: data.password })
             console.log(data);
           })}
           className="space-y-6" action="#" method="POST">
@@ -82,6 +90,9 @@ export default function Login() {
                   <p className="text-red-500">{errors.password.message}</p>
                 )} 
               </div>
+              {error && (
+                  <p className="text-red-500">{error.message}</p>
+                )}
             </div>
 
             <div>
