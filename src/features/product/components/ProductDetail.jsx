@@ -173,7 +173,7 @@ export default function ProductDetail() {
                       Choose a color
                     </RadioGroup.Label>
                     <div className="flex items-center space-x-3">
-                      {colors.map((color) => (
+                      {colors?.map((color) => (
                         <RadioGroup.Option
                           key={color.name}
                           value={color}
@@ -223,7 +223,7 @@ export default function ProductDetail() {
                       Choose a size
                     </RadioGroup.Label>
                     <div className="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4">
-                      {sizes.map((size) => (
+                      {sizes?.map((size) => (
                         <RadioGroup.Option
                           key={size.name}
                           value={size}
@@ -299,7 +299,7 @@ export default function ProductDetail() {
 
                 <div className="space-y-6">
                   <p className="text-base text-gray-900">
-                    {product.description}
+                    {product?.description}
                   </p>
                 </div>
               </div>
@@ -324,7 +324,7 @@ export default function ProductDetail() {
                 <h2 className="text-sm font-medium text-gray-900">Details</h2>
 
                 <div className="mt-4 space-y-6">
-                  <p className="text-sm text-gray-600">{product.description}</p>
+                  <p className="text-sm text-gray-600">{product?.description}</p>
                 </div>
               </div>
             </div>

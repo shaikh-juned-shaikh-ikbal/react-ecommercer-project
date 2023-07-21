@@ -21,7 +21,7 @@ export const checkUserAsync = createAsyncThunk(
   async (loginInfo) => { 
     const response = await checkUser(loginInfo);
     // The value we return becomes the `fulfilled` action payload
-    return response.data;
+    return response?.data;
   }
 );
 
@@ -40,18 +40,18 @@ export const counterSlice = createSlice({
       })
       .addCase(createUserAsync.fulfilled, (state, action) => {
         state.status = "idle";
-        state.loggedInUser = action.payload;
+        state.loggedInUser = action?.payload;
       })
-      .addCase(checkUserAsync.pending, (state) => {
+      .addCase(checkUserAsync?.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(checkUserAsync.fulfilled, (state, action) => {
+      .addCase(checkUserAsync?.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.loggedInUser = action.payload;
+        state.loggedInUser = action?.payload;
       })
-      .addCase(checkUserAsync.rejected, (state, action) => {
+      .addCase(checkUserAsync?.rejected, (state, action) => {
         state.status = 'idle';
-        state.error = action.error;
+        state.error = action?.error;
       })
   }
 });

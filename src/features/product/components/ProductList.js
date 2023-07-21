@@ -147,19 +147,19 @@ export default function ProductList() {
                       <Menu.Items className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
                         <div className="py-1">
                           {sortOptions.map((option) => (
-                            <Menu.Item key={option.name}>
+                            <Menu.Item key={option?.name}>
                               {({ active }) => (
                                 <p
                                   onClick={(e) => handleSort(e, option)}
                                   className={classNames(
-                                    option.current
+                                    option?.current
                                       ? "font-medium text-gray-900"
                                       : "text-gray-500",
                                     active ? "bg-gray-100" : "",
                                     "block px-4 py-2 text-sm"
                                   )}
                                 >
-                                  {option.name}
+                                  {option?.name}
                                 </p>
                               )}
                             </Menu.Item>
@@ -274,10 +274,10 @@ const MobileFilter = ({
 
               {/* Filters */}
               <form className="mt-4 border-t border-gray-200">
-                {filters.map((section) => (
+                {filters?.map((section) => (
                   <Disclosure
                     as="div"
-                    key={section.id}
+                    key={section?.id}
                     className="border-t border-gray-200 px-4 py-6"
                   >
                     {({ open }) => (
@@ -285,7 +285,7 @@ const MobileFilter = ({
                         <h3 className="-mx-2 -my-3 flow-root">
                           <Disclosure.Button className="flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500">
                             <span className="font-medium text-gray-900">
-                              {section.name}
+                              {section?.name}
                             </span>
                             <span className="ml-6 flex items-center">
                               {open ? (
@@ -304,9 +304,9 @@ const MobileFilter = ({
                         </h3>
                         <Disclosure.Panel className="pt-6">
                           <div className="space-y-6">
-                            {section.options.map((option, optionIdx) => (
+                            {section?.options?.map((option, optionIdx) => (
                               <div
-                                key={option.value}
+                                key={option?.value}
                                 className="flex items-center"
                               >
                                 <input
@@ -324,7 +324,7 @@ const MobileFilter = ({
                                   htmlFor={`filter-mobile-${section.id}-${optionIdx}`}
                                   className="ml-3 min-w-0 flex-1 text-gray-500"
                                 >
-                                  {option.label}
+                                  {option?.label}
                                 </label>
                               </div>
                             ))}
@@ -490,33 +490,33 @@ const ProductGrid = ({ products }) => {
               >
                 <div className="aspect-h-6 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-60">
                   <img
-                    src={product.thumbnail}
-                    alt={product.title}
+                    src={product?.thumbnail}
+                    alt={product?.title}
                     className="h-full w-full object-cover object-center lg:h-full lg:w-full"
                   />
                 </div>
                 <div className="mt-4 flex justify-between">
                   <div>
                     <h3 className="text-sm text-gray-700">
-                      <div href={product.thumbnail}>
+                      <div href={product?.thumbnail}>
                         <span aria-hidden="true" className="absolute inset-0" />
-                        {product.title}
+                        {product?.title}
                       </div>
                     </h3>
                     <p className="mt-1 text-sm text-gray-500">
                       <StarIcon className="w-6 h-6 inline" />
-                      <span className="align-bottom">{product.rating}</span>
+                      <span className="align-bottom">{product?.rating}</span>
                     </p>
                   </div>
                   <div>
                     <p className="text-sm font-medium text-gray-900">
                       $
-                      {Math.round(
-                        product.price * (1 - product.discountPercentage / 100)
+                      {Math?.round(
+                        product?.price * (1 - product?.discountPercentage / 100)
                       )}
                     </p>
                     <p className="text-sm line-through font-medium text-gray-400">
-                      ${product.price}
+                      ${product?.price}
                     </p>
                   </div>
                 </div>
